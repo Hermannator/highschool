@@ -1,0 +1,81 @@
+.innpakking{
+	width:75%;
+	padding:10px;
+	margin:auto;
+	border:3px solid black;
+	background-color:lightgrey;
+	font-family:"Century Gothic", Arial, sans-serif;
+}
+.kolonnesetup{
+	display:flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+}
+#tittel{
+	font-size:20pt;
+	text-align:center;
+}
+.kolonne{
+	flex-basis:25%;
+}
+.bold{
+	font-weight:bold;
+}
+.dato{
+	display:flex;
+	flex-direction:row;
+}
+p{
+	margin-bottom:0px;
+}
+h1{
+	margin-top: 0px;
+}
+button{
+	margin: 5px;
+}
+input[type="date"]{
+	margin-right:5px;
+}
+input[type="text"],
+input[type="number"],
+button,
+textarea, select {
+  font-family: inherit;
+  color: #666666;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
+  padding: 5px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.7);
+  box-sizing: border-box;
+  display: block;
+  margin-top: 2px;
+  margin-bottom: 10px;
+}
+input[type="text"] {
+  width: 130px;
+}
+input[type="number"], select {
+  width: 130px;
+}
+button {
+  padding: 10px; /* luft inni knappen */
+  color: white; /* hvit tekstfarge */
+  text-shadow: 0 -1px 1px #335166; /* skygge på teksten */
+  border: 1px solid rgba(0, 0, 0, 0.1); /* lys grå kantlinje */
+  border-radius: 4px; /* avrunder kantene */
+  background: linear-gradient(rgba(255,255,255,0.2), transparent);
+  background-color: #5588AA; /* blå bakgrunnsfarge */
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7); /* skygge bak knappen */
+  outline: none; /* fjerne ekstra kantlinje */
+  cursor: pointer; /* gjør om musepekeren til en hånd */
+}
+button:active {
+  transform: translate(1px, 1px); /* 1 px til høyre og 1 px ned */
+}
+button.ok {
+  background-color: #66BB00; /* grønn */
+}
+button.avbryt {
+  background-color: #CC0000; /* rød */
+}

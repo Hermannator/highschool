@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			h1{
+				transition.property:font-size;
+				transition-duration:3s;
+			}
+			.storTekst{
+				font-size:50px;
+			}
+			.litenTekst{
+				font-size:40px;
+			}
+			h1:hover{
+				font-size:30px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 class = "storTekst">Overskrift</h1>
+		<audio src="lydtest.mp3" type="audio/mpeg">
+		<script>
+		 var h1El = document.querySelector("h1");
+		 var lydtest = document.querySelector("audio");
+		 var bodyEl = document.querySelector("body");
+		 h1El.addEventListener("transitionend",lyd);
+		 bodyEl.addEventListener("keydown",mindreTekst);
+		 function lyd(){
+			 lydtest.play();
+		 }
+		 function mindreTekst(e){
+			if(e.key === "ArrowDown"){
+			 	console.log("test");
+				h1El.classList.remove("storTekst");
+				h1El.classList.add("litenTekst");
+			}
+		 }
+		</script>
+	</body>
+</html>

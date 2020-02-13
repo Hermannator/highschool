@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+	<head>
+		<link rel="stylesheet" href="stilark.css">
+		<meta charset="utf-8">
+		<title>Lær IT: Kapittel 2</title>
+	</head>
+	<body id="topp">
+		<div class="innpakning">
+			<a href="index.html">
+				<header>
+					<h1 id="header_tittel">Lær IT</h1>
+					<img src="bilder/header_bilde.jpg" alt="Learning" width="425" height="283" id="header_bilde">
+				</header>
+			</a>
+			<div id="menyer">
+				<nav>
+					<ul class="menu">
+						<li><a href="kapittel2.html">Kapittel 2</a></li>
+						<li><a href="kapittel3.html">Kapittel 3</a></li>
+						<li><a href="kapittel4.html">Kapittel 4</a></li>
+					<ul>
+				</nav>
+				<nav class="delkapittelmeny" id="kap2delkapittelmeny">
+					<ul class="menu">
+						<li><a href="kapittel2.html#2.1">2.1</a></li>
+						<li><a href="kapittel2.html#2.2">2.2</a></li>
+						<li><a href="kapittel2.html#2.3">2.3</a></li>
+						<li><a href="kapittel2.html#2.4">2.4</a></li>
+						<li><a href="kapittel2.html#2.5">2.5</a></li>
+						<li><a href="kapittel2.html#2.6">2.6</a></li>
+					<ul>
+				</nav>
+			</div>
+			<main>
+				<h2 class="kapitteltittel"><b>Kapittel 2:</b> Fra 0 og 1 til tekst, lyd og bilde</h2>
+				<img class="kapittelbilde" id="kapittel2bilde" src="bilder/kap2bilde.jpg" alt="Kapittelbilde" width="800" height="600">
+				<h3 class="kapitteltittel" id="2.1">
+					<b>2.1:</b> Hvorfor 0 og 1?
+					<span style="float:right;"><a href="kapittel2.html#topp">Til toppen</a></span>
+				</h3>
+				<p>Tallsystemet som datamaskiner baserer seg på, er totallsystemet, også kalt det binære tallsystemet. Prosessoren i datamaskinen utfører alle beregninger med transistorer, som kan ha to innstillinger, som representerer tallene 0 og 1 i  totallsystemet. En slik innstilling, altså 0 eller 1, kalles en bit, og en serie på 8 bits kalles en byte. Alt datamaskinen gjør er basert på dette systemet. Det tallsystemet vi vanligvis bruker er titallsystemet, men det finnes andre, som sekstentallsystemet.</p>
+				<h3 class="kapitteltittel" id="2.2">
+					<b>2.2:</b> Representasjon av tekst
+					<span style="float:right;"><a href="kapittel2.html#topp">Til toppen</a></span>
+				</h3>
+				<p>Siden alt på datamaskinen er kombinasjoner av 0 og 1, må programvaren tolke disse kombinasjonene for å vise tekst, lyd og bilde. For tekst  brukes det såkalte tegnsett, som gir hvert tegn en tallverdi. Et av de første tegnsettet het ASCII (American Standard Code for Information Interchange). Dette tegnsettet var begrenset, og ble etter hvert problematisk på grunn av hvordan internasjonale tegn ble representert, og derfor har man senere gått over til andre tegnsett. ANSI-tegnsettet, som blant annet inneholder æ, ø og å, blir brukt av Windows.</p>
+				<p>Unicode er navnet på et annet tegnsett, som inneholder alle tegn fra alle tenkelige skriftspråk. UTF-8 utnytter alle Unicode-tegn og er i tillegg kompatibel med kode som er tegnsatt med ASCII.</p>
+				<p>Med hjelp av stilark på nettsider kan man endre utseende på tegn. Da kalles de glyfer.</p>
+				<h3 class="kapitteltittel" id="2.3">
+					<b>2.3:</b> Representasjon av farge
+					<span style="float:right;"><a href="kapittel2.html#topp">Til toppen</a></span>
+				</h3>
+				<p>Farge må også tolkes av programvaren. Det vanligste systemet for representasjon av farge er RGB-modellen. Den går ut på å angi en verdi fra 0 til 255 for mengden Rød, Grønn og Blå i en farge. Hvis alle verdiene er 0, er fargen svart, mens 255 på alle fargene gir hvit. Med denne modellen kan vi representere nesten 17 millioner farger. Én farge i dette systemet bruker 3 byte.</p>
+				<p>På nettsider bruker man heksadesimale fargekoder for RGB-farger. Det er en kode på seks sifre i sekstentalls-systemet, altså 0-9 og A-F, etter en #. De to første sifrene angir mengden rød, de to neste mengden grønn og de to siste mengden blå. For eksempel er #00FF00 grønn, og #FFFFFF er hvit. Like tall på hver farge gir gråtoner, for eksempel #353535.</p>
+				<h3 class="kapitteltittel" id="2.4">
+					<b>2.4:</b> Representasjon av bilde
+					<span style="float:right;"><a href="kapittel2.html#topp">Til toppen</a></span>
+				</h3>
+				<p>Bilder kan representeres på flere forskjellige måter. Den vanligste er punktgrafikk. Den utnytter at skjermer består av et visst antall piksler, som hver viser en kombinasjon av rød, grønn eller blå. Punktgrafikk bestemmer fargen til hver individuelle piksel. Eksempler på punktgrafikk-formater er PNG og JPEG.</p>
+				<p>Bilder kan også representeres som vektorgrafikk, som betyr at man har gitt en oppskrift på hvordan bildet skal være oppbygd. Fordelen med dette er at man kan forstørre bildet uten å miste kvalitet. Det vanligste vektorgrafikk-formatet er SVG. Vektorgrafikk brukes ofte for bilder oppbygd av relativt enkle geometriske figurer.</p>
+				<p>Å komprimere bilder vil si å lagre dem på andre måter som tar mindre plass. Dette benyttes kun på punktgrafikk. Forskjellige bildeformater varierer i komprimeringsmetode. For eksempel ofrer JPEG bildekvalitet for mindre filstørrelse, mens PNG er et lossless format som ikke ofrer kvalitet. På nettsider er det ofte viktig å begrense bildestørrelsen for å få siden til å laste raskere.</p>
+				<h3 class="kapitteltittel" id="2.5">
+					<b>2.5:</b> Representasjon av lyd
+					<span style="float:right;"><a href="kapittel2.html#topp">Til toppen</a></span>
+				</h3>
+				<p>Lyd skapes av molekyler som beveger seg i svingninger, altså bølger. Når man hører lyd fra en høyttaler, er det høyttaleren som har laget vibrasjoner i lufta som ørene våre kan oppfatte. For å kunne representere lydbølger digitalt, kan vi ikke bare ta kurven til lydbølgen, siden den inneholder uendelig mange punkter. Vi må "sample" lyden, altså velge ut punkter med et visst tidsintervall, for å best imitere lyden. Da kan vi representere den digitalt.</p>
+				<p>Jo flere sampling-punkter man bruker, desto bedre lydkvalitet får man, men da blir også filstørrelsen større. Derfor har man forskjellige lydformater basert på balansen mellom lydkvalitet og filstørrelse. Man har WAV, som ikke komprimerer, FLAC som komprimerer uten tap av kvalitet (som PNG for bilder), og MP3, som ofrer kvalitet for mindre størrelse (som JPEG for bilder).</p>
+				<h3 class="kapitteltittel" id="2.6">
+					<b>2.6:</b> Filer
+					<span style="float:right;"><a href="kapittel2.html#topp">Til toppen</a></span>
+				</h3>
+				<p>Alle filer, uansett om de er ment å representere lyd, bilde eller tekst, er samlinger av sifrene 0 og 1. Derfor må dataprogrammer vite hvordan de skal tolke filene. Dette gjøres ved at filene har filendelser basert på hvilket program som burde tolke det. For eksempel vet PC'en at filer med .docx skal åpnes i Microsoft Word.</p>
+			</main>
+			<footer>
+				<p>&copy Hermann Mørkrid 2016</p>
+			</footer>
+		</div>
+	</body>
+</html>

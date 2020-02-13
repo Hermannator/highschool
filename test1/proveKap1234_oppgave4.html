@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+			
+		</style>
+		<title>Hermann 3G Oppgave 4</title>
+	</head>
+	<body>
+		<script>
+			var tilfeldigTall=Math.floor(Math.random()*18+2);	//Lager et tilfeldig helt tall fra og med 2 til og med 19 (antar at dette var ment med "mellom 2 og 19").
+			console.log(tilfeldigTall); //Logger tallet i konsollen slik at man kan sjekke at koden stemmer.
+			if(tilfeldigTall>10){
+				for(var i=0; i<15; i++){	//For-løkken går gjennom i-verdiene 0-14, altså gjentar den koden 15 ganger.
+					document.write("Stort tall<br>"); //Legger til <br>-element for å gjøre koden mer oversiktlig.
+				}
+			}else if(tilfeldigTall<10){	//Vi må bruke else if, ikke else, fordi det tilfeldige tallet kan bli akkurat 10. Oppgaven ber ikke om noen utskrift hvis tallet blir nøyaktig 10, altså kan vi ikke bruke else.
+				for(var i=0; i<5; i++){	//For-løkken går gjennom i-verdiene 0-4, altså gjentar den koden 5 ganger.
+					document.write("Lite tall<br>");
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="stilark.css">
+		<title></title>
+		<style>
+
+		</style>
+	</head>
+	<body>
+		<div class="innpakking">
+			<div class="kolonnesetup">
+				<div class="kolonne" id="tittel">
+					Hermanns<br>snittkalkulator
+				</div>
+				<div class="kolonne">
+					<b>Forsert</b><br>
+					Matematikk 1T: 6<br>
+				</div>
+				<div class="kolonne">
+					<b>VG1</b><br>
+					Engelsk: 6<br>
+					Geografi: 6<br>
+					Naturfag: 6<br>
+					Matematikk R1: 6<br>
+					Samfunnsfag: 6<br>
+				</div>
+				<div class="kolonne">
+					<b>VG2</b><br>
+					Spansk: 6<br>
+					Spansk-eksamen: 6<br>
+					Fysikk 1: 6<br>
+					IT 1: 6<br>
+					Matematikk R2: 5<br>
+					Samfunnsøkonomi 1: 6<br>
+				</div>
+			</div>
+			<br><b>VG3</b><br>
+			<div class="kolonnesetup">
+				<div class="kolonne">
+					Historie:
+					<select class="karakter">
+						<option value=6 selected>6</option>
+						<option value=5>5</option>
+						<option value=4>4</option>
+						<option value=3>3</option>
+						<option value=2>2</option>
+						<option value=1>1</option>
+					</select>
+					<br>
+					RLE:
+					<select class="karakter">
+						<option value=6 selected>6</option>
+						<option value=5>5</option>
+						<option value=4>4</option>
+						<option value=3>3</option>
+						<option value=2>2</option>
+						<option value=1>1</option>
+					</select>
+					<br>
+					Gym:
+					<select class="karakter">
+						<option value=6>6</option>
+						<option value=5 selected>5</option>
+						<option value=4>4</option>
+						<option value=3>3</option>
+						<option value=2>2</option>
+						<option value=1>1</option>
+					</select>
+				</div>
+				<div class="kolonne">
+					Norsk skriftlig:
+					<select class="karakter">
+						<option value=6 selected>6</option>
+						<option value=5>5</option>
+						<option value=4>4</option>
+						<option value=3>3</option>
+						<option value=2>2</option>
+						<option value=1>1</option>
+					</select>
+					<br>
+					Nynorsk:
+					<select class="karakter">
+						<option value=6>6</option>
+						<option value=5 selected>5</option>
+						<option value=4>4</option>
+						<option value=3>3</option>
+						<option value=2>2</option>
+						<option value=1>1</option>
+					</select>
+					<br>
+					Norsk muntlig:
+					<select class="karakter">
+						<option value=6 selected>6</option>
+						<option value=5>5</option>
+						<option value=4>4</option>
+						<option value=3>3</option>
+						<option value=2>2</option>
+						<option value=1>1</option>
+					</select>
+				</div>
+				<div class="kolonne">
+					Norsk skriftlig eksamen:
+					<select class="karakter">
+						<option value=6>6</option>
+						<option value=5 selected>5</option>
+						<option value=4>4</option>
+						<option value=3>3</option>
+						<option value=2>2</option>
+						<option value=1>1</option>
+					</select>
+					<br>
+					IT 2:
+					<select class="karakter">
+						<option value=6 selected>6</option>
+						<option value=5>5</option>
+						<option value=4>4</option>
+						<option value=3>3</option>
+						<option value=2>2</option>
+						<option value=1>1</option>
+					</select>
+					<br>
+					Fysikk 2:
+					<select class="karakter">
+						<option value=6 selected>6</option>
+						<option value=5>5</option>
+						<option value=4>4</option>
+						<option value=3>3</option>
+						<option value=2>2</option>
+						<option value=1>1</option>
+					</select>
+				</div>
+				<div class="kolonne">
+					Norsk muntlig eksamen:
+					<select class="karakter">
+						<option value=6 selected>6</option>
+						<option value=5>5</option>
+						<option value=4>4</option>
+						<option value=3>3</option>
+						<option value=2>2</option>
+						<option value=1>1</option>
+					</select>
+					<br>
+					IT-eksamen:
+					<select class="karakter">
+						<option value=6>6</option>
+						<option value=5 selected>5</option>
+						<option value=4>4</option>
+						<option value=3>3</option>
+						<option value=2>2</option>
+						<option value=1>1</option>
+					</select>
+					<br>
+					Fysikk-eksamen:
+					<select class="karakter">
+						<option value=6>6</option>
+						<option value=5 selected>5</option>
+						<option value=4>4</option>
+						<option value=3>3</option>
+						<option value=2>2</option>
+						<option value=1>1</option>
+					</select>
+				</div>
+			</div>
+			<br><button id="knapp">Beregn</button>
+			<p id="resultat"></p>
+		</div>
+		<script>
+			var karakterEl = document.querySelectorAll(".karakter")
+			var knappEl = document.querySelector("#knapp");
+			var resultatEl = document.querySelector("#resultat");
+			knappEl.addEventListener("click",beregn);
+			function beregn(){
+				var karaktersum = 6 + 6*5 + (6*5 + 5)
+				for(var i = 0; i < karakterEl.length; i++){
+					karaktersum += Number(karakterEl[i].value);
+				}
+				var antallKarakterer = 1+5+6+12;
+				var snitt = karaktersum/antallKarakterer;
+				var realfagspoeng = 4;
+				var karakterpoeng = 10*(snitt.toFixed(2)) + realfagspoeng
+				resultatEl.innerHTML = karakterpoeng;
+			}
+		</script>
+	</body>
+</html>

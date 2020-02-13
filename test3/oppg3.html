@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.innpakking{
+				width:600px;
+				height:400px;
+				display:flex;
+				flex-direction:row;
+			}
+			p{
+				padding-left:20px;
+			}
+			.nav{
+				flex-grow:4;
+				background-color:lightgreen;
+			}
+			.hoyre{
+				flex-grow:5;
+				display:flex;
+				flex-direction:column;
+			}
+			.header,.footer{
+				flex-grow:1;
+				background-color:green;
+			}
+			.under{
+				display:flex;
+				flex-direction:row;
+				flex-grow:10;
+			}
+			.venstre{
+				flex-grow:5;
+				display:flex;
+				flex-direction:column;
+			}
+			.article{
+				flex-grow:9;
+				background-color:red;
+			}
+			.aside{
+				flex-grow:1;
+				background-color:yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="innpakking">
+			<div class="nav"><p>Nav</p></div>
+			<div class="hoyre">
+				<div class="header"><p>Header</p></div>
+				<div class="under">
+					<div class="venstre">
+						<div class="article"><p>Article</p></div>
+						<div class="footer"><p>Footer<p></div>
+					</div>
+					<div class="aside"><p>Aside<p></div>
+				</div>
+			</div>
+		</div>
+		<script>
+
+		</script>
+	</body>
+</html>

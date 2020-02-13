@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel = "stylesheet" href = "stilark.css">
+		<title>Vinter-OL 2014 (Oppgave 2)</title>
+		<style>
+			.feilmelding{
+				color:red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class = "innpakking">
+			<h1>Vinter-OL 2014</h1>
+			<p>Skriv inn et land og se hva de vant i vinter-OL!</p>
+			<input type = "text" id = "tekstfelt">
+			<button id = "knapp">Se medaljer</button>
+			<p id = "resultat"></p>
+		</div>
+		<script>
+			var tekstfeltEl = document.querySelector("#tekstfelt");
+			var knappEl = document.querySelector("#knapp");
+			var resultatEl = document.querySelector("#resultat");
+
+			knappEl.addEventListener("click",info);
+
+			function info(){
+				for(var i = 0; i < land.length; i++){
+					if(land[i].navn.toUpperCase() == tekstfeltEl.value.toUpperCase()){
+						resultatEl.classList.remove("feilmelding");
+						return resultatEl.innerHTML = land[i].navn + " vant " + land[i].gull + " gull, " + land[i].solv + " sølv og " + land[i].bronse + " bronse!<br>Til sammen vant de " + land[i].medaljesum + " medaljer.";
+					}else{
+						resultatEl.classList.add("feilmelding");
+						resultatEl.innerHTML = "Landet du skrev inn ligger ikke i databasen vår. Sjekk at du skrev rett.";
+					}
+				}
+			}
+
+			var land = [
+				{
+					navn:"Sør-Korea",
+					gull:3,
+					solv:3,
+					bronse:2,
+				},
+				{
+					navn:"Japan",
+					gull:1,
+					solv:4,
+					bronse:3,
+				},
+				{
+					navn:"Sverige",
+					gull:2,
+					solv:7,
+					bronse:6,
+				},
+				{
+					navn:"Norge",
+					gull:11,
+					solv:5,
+					bronse:10,
+				},
+				{
+					navn:"Kina",
+					gull:3,
+					solv:4,
+					bronse:2,
+				},
+				{
+					navn:"Russland",
+					gull:9,
+					solv:3,
+					bronse:8,
+				},
+				{
+					navn:"Finland",
+					gull:1,
+					solv:3,
+					bronse:1,
+				},
+				{
+					navn:"Østerrike",
+					gull:4,
+					solv:8,
+					bronse:5,
+				},
+				{
+					navn:"USA",
+					gull:9,
+					solv:7,
+					bronse:12,
+				},
+				{
+					navn:"Hviterussland",
+					gull:5,
+					solv:0,
+					bronse:1,
+				},
+				{
+					navn:"Canada",
+					gull:10,
+					solv:10,
+					bronse:5,
+				},
+				{
+					navn:"Storbritannia",
+					gull:1,
+					solv:1,
+					bronse:2,
+				},
+				{
+					navn:"Sveits",
+					gull:6,
+					solv:3,
+					bronse:2,
+				},
+				{
+					navn:"Slovenia",
+					gull:2,
+					solv:2,
+					bronse:4,
+				},
+				{
+					navn:"Frankrike",
+					gull:4,
+					solv:4,
+					bronse:7,
+				},
+				{
+					navn:"Tsjekkia",
+					gull:2,
+					solv:4,
+					bronse:2,
+				},
+				{
+					navn:"Tyskland",
+					gull:8,
+					solv:6,
+					bronse:5,
+				},
+				{
+					navn:"Ukraina",
+					gull:1,
+					solv:0,
+					bronse:1,
+				},
+				{
+					navn:"Nederland",
+					gull:8,
+					solv:7,
+					bronse:9,
+				},
+				{
+					navn:"Polen",
+					gull:4,
+					solv:1,
+					bronse:1,
+				},
+			];
+
+			for(var i = 0; i < land.length; i++){
+				land[i].medaljesum = land[i].gull + land[i].solv + land[i].bronse;
+			}
+		</script>
+	</body>
+</html>

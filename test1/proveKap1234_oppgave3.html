@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+			
+		</style>
+		<title>Hermann 3G Oppgave 3</title>
+	</head>
+	<body>
+		<script>
+			var vekt=prompt("Hvor mye veier du i kg?");
+			var hoyde=prompt("Hvor høy er du i meter?");
+			var bmi=vekt/(hoyde*hoyde);
+			console.log(bmi);
+			var bmiTreDesimaler=(Math.floor(bmi*1000))/1000	//Ganger først med 1000 for å få med tre desimaler i et heltall, som vi dermed runder av, for så å dele for å gjøre de tre opprinnelige desimalene tilbake til desimaler.
+			document.write("Din BMI er "+bmiTreDesimaler+".");
+		</script>
+	</body>
+</html>

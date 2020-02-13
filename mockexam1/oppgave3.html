@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Land og språk - IT-tentamen Hermann Mørkrid oppgave 3</title>
+	</head>
+	<body>
+		<p>Hvilket land er du fra?</p>
+		<select id="land">
+			<option value="spansk">Uruguay</option>
+			<option value="afrikaans">Sør-Afrika</option>
+			<option value="kinesisk">Taiwan</option>
+			<option value="tysk">Østerrike</option>
+		</select>
+		<p id="resultat"></p>
+		<script>
+			var landEl = document.querySelector("#land");
+			var resultatEl = document.querySelector("#resultat");
+			resultatEl.innerHTML = "Du snakker sannsynligvis "+landEl.value+"."	//Slik at vi får med det nedtrekksmenyen starter med.
+			landEl.addEventListener("change", finnsprak);
+			function finnsprak(){
+				resultatEl.innerHTML = "Du snakker sannsynligvis "+landEl.value+".";
+			}
+		</script>
+	</body>
+</html>

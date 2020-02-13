@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+	<head>
+		<link rel="stylesheet" href="stilark.css">
+		<meta charset="utf-8">
+		<title>Lær IT: Kapittel 4</title>
+	</head>
+	<body id="topp">
+		<div class="innpakning">
+			<a href="index.html">
+				<header>
+					<h1 id="header_tittel">Lær IT</h1>
+					<img src="bilder/header_bilde.jpg" alt="Learning" width="425" height="283" id="header_bilde">
+				</header>
+			</a>
+			<div id="menyer">
+				<nav>
+					<ul class="menu">
+						<li><a href="kapittel2.html">Kapittel 2</a></li>
+						<li><a href="kapittel3.html">Kapittel 3</a></li>
+						<li><a href="kapittel4.html">Kapittel 4</a></li>
+					<ul>
+				</nav>
+				<nav class="delkapittelmeny">
+					<ul class="menu">
+						<li><a href="kapittel4.html#4.1">4.1</a></li>
+						<li><a href="kapittel4.html#4.2">4.2</a></li>
+						<li><a href="kapittel4.html#4.3">4.3</a></li>
+					<ul>
+				</nav>
+			</div>
+			<main>
+				<h2 class="kapitteltittel"><b>Kapittel 4:</b> Internett</h2>
+				<img class="kapittelbilde" id="kapittel4bilde" src="bilder/kap4bilde.png" alt="Kapittelbilde" width="960" height="624">
+				<h3 class="kapitteltittel" id="4.1">
+					<b>4.1:</b> Internett
+					<span style="float:right;"><a href="kapittel4.html#topp">Til toppen</a></span>
+				</h3>
+				<p>Internett er et nettverk av nettverk. For å fungere må alle deler av det benytte felles spilleregler, kalt protokoller. Internett består av maskinvare som fysisk kobler sammen maskiner, som kabler, rutere, tjenere, mobiltårn, satellitter, radioer, smarttelefoner og andre apparater, og programvare som behandler informasjonen som sendes på dette nettverket.</p>
+				<p>Internett er et resultat av nettverk som har blitt større og større, og koblet seg til hverandre slik at vi har fått et gigantisk nettverk av nettverk. Maskinene vi benytter for å få tilgang til Internett, kalles klienter, mens maskinene som lagrer informasjonen på Internett, kalles tjenere, eller servers på engelsk.</p>
+				<h3 class="kapitteltittel" id="4.2">
+					<b>4.2:</b> Hvordan virker Internett?
+					<span style="float:right;"><a href="kapittel4.html#topp">Til toppen</a></span>
+				</h3>
+				<p>Internett fungerer gjennom forespørsel og levering av informasjon. Hvis du vil se et bilde på internett, sender maskinen din en forespørsel i en informasjonspakke til tjeneren som har lagret bildet. Informasjonspakken inneholder informasjon om klienten, tjeneren og forespørselen. Tjeneren vil så behandle forespørselen og sende tilbake informasjon i form av det ønskede bildet. Dersom det er mye informasjon deles den inn i mindre pakker. Pakkene inneholder så informasjon om hvor de kommer fra, hvor de skal og hvordan de skal sette seg sammen.</p>
+				<h3 class="kapitteltittel" id="4.3">
+					<b>4.3:</b> Internettstandarder (protokoller)
+					<span style="float:right;"><a href="kapittel4.html#topp">Til toppen</a></span>
+				</h3>
+				<p>For at kommunikasjonen over internett skal fungere, må alle følge visse standarder, eller protokoller som det kalles i datakommuikasjon. De viktigste protokollene er TCP (Transmission Control Protocol) og IP (Internet Protocol).</p>
+				<p>Internettprotokollen (IP) håndterer kommunikasjon mellom maskiner. Hver maskin som er koblet til Internett får en unik IP-adresse bestående av fire tall med punktum mellom, for eksempel 192.168.1.1. Informasjonspakker inneholder IP-adressene til både tjener og klient. Nettsider pleier å utnytte domenenavn, som www.google.com, istedenfor IP-adresse. Da brukes en domenenavntjener (DNS-tjener) som finner IP-adressen, så vi slipper å huske lange tallrekker.</p>
+				<p>TCP håndterer hvordan informasjonspakker på Internett sendes og mottas. Denne protokollen bestemmer hvordan informasjonen skal deles opp i pakker og hvordan pakkene skal settes sammen igjen. Denne informasjonen legges til pakkene, og kalles en "header". TCP kan også merke om alle pakker har blitt mottatt, og dermed la oss sjekke at all informasjonen har kommet fram.</p>
+				<p>Nettsider benytter også en annen viktig protokoll, nemlig HTTP, "Hypertext Transfer Protocol". Denne protokollen benyttes av nettlesere og tjenere og gjør at verdensveven (World Wide Web) fungerer. Når man skriver inn en adresse i nettleseren, vil nettleseren sende en HTTP-forespørsel til tjeneren. Dersom siden finnes vil den returnere et svar, og hvis ikke vil den vise en 404-feilmelding. Koblingen avsluttes når siden har blitt sendt til klienten.</p>
+			</main>
+			<footer>
+				<p>&copy Hermann Mørkrid 2016</p>
+			</footer>
+		</div>
+	</body>
+</html>

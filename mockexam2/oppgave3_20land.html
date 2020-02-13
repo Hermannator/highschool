@@ -1,0 +1,265 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel = "stylesheet" href = "stilark.css">
+		<title>Vinter-OL 2014 (Oppgave 3)</title>
+		<style>
+			#mittCanvas {
+	      background-color: #ffffff;
+	      display: block;
+	      margin: auto;
+	    }
+			h2{
+				text-align:center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class = "innpakking">
+			<h1>Vinter-OL 2014</h1>
+			<p>Velg en verdensdel og se hvordan de gjorde det i vinter-OL!</p>
+			<select id = "nedtrekk">
+				<option value = "0">Asia</option>
+				<option value = "1">Europa</option>
+				<option value = "2">Nord-Amerika</option>
+			</select>
+			<p id = "resultat"></p><br>
+			<h2>Totalt antall medaljer vunnet</h2>
+			<canvas id="mittCanvas" width="500" height="300"></canvas>
+		</div>
+		<script>
+			var nedtrekkEl = document.querySelector("#nedtrekk");
+			var resultatEl = document.querySelector("#resultat");
+
+			var canvas = document.querySelector("#mittCanvas");
+		  var ctx = canvas.getContext("2d");
+
+			nedtrekkEl.addEventListener("change",info);
+
+			var land = [
+				{
+					navn:"Sør-Korea",
+					verdensdel:"Asia",
+					gull:3,
+					solv:3,
+					bronse:2,
+				},
+				{
+					navn:"Japan",
+					verdensdel:"Asia",
+					gull:1,
+					solv:4,
+					bronse:3,
+				},
+				{
+					navn:"Sverige",
+					verdensdel:"Europa",
+					gull:2,
+					solv:7,
+					bronse:6,
+				},
+				{
+					navn:"Norge",
+					verdensdel:"Europa",
+					gull:11,
+					solv:5,
+					bronse:10,
+				},
+				{
+					navn:"Kina",
+					verdensdel:"Asia",
+					gull:3,
+					solv:4,
+					bronse:2,
+				},
+				{
+					navn:"Russland",
+					verdensdel:"Asia",
+					gull:9,
+					solv:3,
+					bronse:8,
+				},
+				{
+					navn:"Finland",
+					verdensdel:"Europa",
+					gull:1,
+					solv:3,
+					bronse:1,
+				},
+				{
+					navn:"Østerrike",
+					verdensdel:"Europa",
+					gull:4,
+					solv:8,
+					bronse:5,
+				},
+				{
+					navn:"USA",
+					verdensdel:"Nord-Amerika",
+					gull:9,
+					solv:7,
+					bronse:12,
+				},
+				{
+					navn:"Hviterussland",
+					verdensdel:"Europa",
+					gull:5,
+					solv:0,
+					bronse:1,
+				},
+				{
+					navn:"Canada",
+					verdensdel:"Nord-Amerika",
+					gull:10,
+					solv:10,
+					bronse:5,
+				},
+				{
+					navn:"Storbritannia",
+					verdensdel:"Europa",
+					gull:1,
+					solv:1,
+					bronse:2,
+				},
+				{
+					navn:"Sveits",
+					verdensdel:"Europa",
+					gull:6,
+					solv:3,
+					bronse:2,
+				},
+				{
+					navn:"Slovenia",
+					verdensdel:"Europa",
+					gull:2,
+					solv:2,
+					bronse:4,
+				},
+				{
+					navn:"Frankrike",
+					verdensdel:"Europa",
+					gull:4,
+					solv:4,
+					bronse:7,
+				},
+				{
+					navn:"Tsjekkia",
+					verdensdel:"Europa",
+					gull:2,
+					solv:4,
+					bronse:2,
+				},
+				{
+					navn:"Tyskland",
+					verdensdel:"Europa",
+					gull:8,
+					solv:6,
+					bronse:5,
+				},
+				{
+					navn:"Ukraina",
+					verdensdel:"Europa",
+					gull:1,
+					solv:0,
+					bronse:1,
+				},
+				{
+					navn:"Nederland",
+					verdensdel:"Europa",
+					gull:8,
+					solv:7,
+					bronse:9,
+				},
+				{
+					navn:"Polen",
+					verdensdel:"Europa",
+					gull:4,
+					solv:1,
+					bronse:1,
+				},
+			];
+
+			var kontinent = [
+				{
+					navn:"Asia",
+					gull:0,
+					solv:0,
+					bronse:0,
+					medaljesum:0,
+				},
+				{
+					navn:"Europa",
+					gull:0,
+					solv:0,
+					bronse:0,
+					medaljesum:0,
+				},
+				{
+					navn:"Nord-Amerika",
+					gull:0,
+					solv:0,
+					bronse:0,
+					medaljesum:0,
+				},
+			];
+
+			var totaltGull = 0;
+			var totaltSolv = 0;
+			var totaltBronse = 0;
+
+			for(var i = 0; i < kontinent.length; i++){
+				for(var j = 0; j < land.length; j++){
+					if(land[j].verdensdel == kontinent[i].navn){
+						kontinent[i].gull += land[j].gull;
+						kontinent[i].solv += land[j].solv;
+						kontinent[i].bronse += land[j].bronse;
+						kontinent[i].medaljesum += land[j].gull + land[j].solv + land[j].bronse;
+					}
+				}
+				totaltGull += kontinent[i].gull;
+				totaltSolv += kontinent[i].solv;
+				totaltBronse += kontinent[i].bronse;
+			}
+
+			var totaltMedaljesum = totaltGull + totaltSolv + totaltBronse;
+
+			for(var i = 0; i < kontinent.length; i++){
+				kontinent[i].prosentGull = (kontinent[i].gull/totaltGull) * 100;
+				kontinent[i].prosentSolv = (kontinent[i].solv/totaltSolv) * 100;
+				kontinent[i].prosentBronse = (kontinent[i].bronse/totaltBronse) * 100;
+				kontinent[i].prosentTotalt = (kontinent[i].medaljesum/totaltMedaljesum) * 100;
+			}
+
+			resultatEl.innerHTML = "Verdensdelen " + kontinent[nedtrekkEl.value].navn + " tok til sammen:<br>" + kontinent[nedtrekkEl.value].gull + " gull (" + kontinent[nedtrekkEl.value].prosentGull.toFixed(1) + "% av alt gullet)<br>" + kontinent[nedtrekkEl.value].solv + " sølv (" + kontinent[nedtrekkEl.value].prosentSolv.toFixed(1) + "% av alt sølvet)<br>" + kontinent[nedtrekkEl.value].bronse + " bronse (" + kontinent[nedtrekkEl.value].prosentBronse.toFixed(1) + "% av all bronsen)<br>" + kontinent[nedtrekkEl.value].medaljesum + " medaljer totalt (" + kontinent[nedtrekkEl.value].prosentTotalt.toFixed(1) + "% av alle medaljene)";
+			//Linja over står utenfor og gjentas i funksjonen nedenfor, for at det allerede valgte kontinentet skal vise informasjon når brukeren går inn på sida.
+			function info(){
+				resultatEl.innerHTML = "Verdensdelen " + kontinent[nedtrekkEl.value].navn + " tok til sammen:<br>" + kontinent[nedtrekkEl.value].gull + " gull (" + kontinent[nedtrekkEl.value].prosentGull.toFixed(1) + "% av alt gullet)<br>" + kontinent[nedtrekkEl.value].solv + " sølv (" + kontinent[nedtrekkEl.value].prosentSolv.toFixed(1) + "% av alt sølvet)<br>" + kontinent[nedtrekkEl.value].bronse + " bronse (" + kontinent[nedtrekkEl.value].prosentBronse.toFixed(1) + "% av all bronsen)<br>" + kontinent[nedtrekkEl.value].medaljesum + " medaljer totalt (" + kontinent[nedtrekkEl.value].prosentTotalt.toFixed(1) + "% av alle medaljene)";
+			}
+
+			var tekstBredde = 200;
+		  var totalBredde = canvas.width;
+		  var soyleBredde = totalBredde - tekstBredde - 10;
+		  canvas.height = kontinent.length * 30;
+
+			var max = 0;
+		  for(var i = 0; i < kontinent.length; i++){
+		    if(kontinent[i].medaljesum > max){
+		      max = kontinent[i].medaljesum;
+		    }
+		  }
+
+			ctx.font = "24px 'Arial'";
+		  ctx.textAlign = "end";
+		  ctx.textBaseline = "hanging";
+
+			for(var i = 0; i < kontinent.length; i++){
+		    var andel = (kontinent[i].medaljesum / max) *soyleBredde;
+		    ctx.fillStyle = "black";
+		    ctx.fillText(kontinent[i].navn + " (" + kontinent[i].medaljesum + ")", tekstBredde, (30*i) + 3);
+		    ctx.fillStyle = "hsl(" + i * 100 + ", 100%, 40%)";
+		    ctx.fillRect(tekstBredde + 5, (30*i) + 3, andel, 24);
+		  }
+		</script>
+	</body>
+</html>

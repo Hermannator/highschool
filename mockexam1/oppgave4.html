@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Skiskyting - IT-tentamen Hermann Mørkrid oppgave 4</title>
+	</head>
+	<body>
+		<p>Hvor mange treff fikk deltakeren?</p>
+		<select id="treffInput">	<!-- Velger nedtrekksmeny for å registrere antall treff. -->
+			<option value = "0">Han/hun traff ikke.</option>
+			<option value = "1">Ett treff.</option>
+			<option value = "2">To treff.</option>
+			<option value = "3">Tre treff.</option>
+			<option value = "4">Fire treff.</option>
+			<option value = "5">Fem treff.</option>
+		</select>
+		<div id="blinker"></div>	<!-- Setter av et område til der blinkene skal være, slik at de kommer på riktig sted. -->
+		<p id="strafferunder"></p>	<!-- Setter av et p-element til resultatet av antall strafferunder, slik at vi kan referere til det i script. -->
+		<script>
+			var treffInputEl = document.querySelector("#treffInput");	//Velger de tre elementene fra HTML-en slik at vi kan anvende dem.
+			var blinkerEl = document.querySelector("#blinker");
+			var strafferunderEl = document.querySelector("#strafferunder");
+			treffInputEl.addEventListener("change", resultat);	//Legger til en hendelse på nedtrekksmenyen slik at resultatet endres basert på hva brukeren velger. Jeg velger å la resultatet stå tomt før brukeren har valgt noe annet enn null treff.
+			function resultat(){	//Lager en funksjon som aktiveres av nedtrekksmenyen.
+				var antallTreff = Number(treffInputEl.value);	//Henter informasjonen fra nedtrekksmenyen. Passer på å gjøre det til Number.
+				blinkerEl.innerHTML="";	//Tømmer blink-området slik at blinkene ikke "stacker" når man bruker funksjonen flere ganger.
+				for(i=0; i<antallTreff; i++){	//For-løkke som legger til et nytt img-element med blink basert på hvor mange treff som ble registrert.
+					blinkerEl.innerHTML += "<img src='blink.png'>"
+				}
+				var antallStrafferunder = 5-antallTreff;	//Siden antall strafferunder er lik antall bom, og det maksimalt kan være 5 treff.
+				if(antallStrafferunder == 1){
+					var riktigBoying = "strafferunde";	//Den viktigste delen av koden: passe på at substantivet blir bøyd riktig i resultatet.
+				}else{
+					var riktigBoying = "strafferunder";
+				}
+				strafferunderEl.innerHTML = "Deltakeren må gå "+antallStrafferunder+" "+riktigBoying+".";	//Setter resultatet om strafferundene (med riktig bøying) inn i p-elementet fra tidligere.
+			}
+		</script>
+	</body>
+</html>

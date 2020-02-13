@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+<head>
+  <title> Oppgave 3 </title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="brukerinput.css">
+  <link rel="stylesheet" href="tabellstil.css">
+  <style>
+    body {
+      background-color: #e0e0e0;
+      font-family: "Century Gothic", Arial, sans-serif;
+      font-size: 14px;
+      color: #323232;
+    }
+    .innpakning {
+      width: 615px;
+      margin: 10px auto;
+      padding: 5px;
+      background-color: white;
+      border: 3px solid black;
+    }
+    .inlineButton{
+      display:inline;
+    }
+    .shortInput{
+      width:150px !important;	/*Takk, Hans Kristian*/
+    }
+    #bruktepassord{
+      display:none;
+    }
+    #avgistemme {
+      display: none;
+    }
+    #resultater {
+      display: none;
+    }
+    .passordfelt{
+      display:inline-block;
+      margin-right:5px;
+    }
+    #logginnknapp{
+      background-color:green;
+    }
+  </style>
+</head>
+<body>
+
+<div class="innpakning" id="innlogging">
+  <h1>Programmeringsspråk</h1>
+  <div class = "passordfelt">
+    Skriv inn passordet ditt<br>
+    <input type = "password" id = "passord" class = "shortInput">
+  </div>
+  <div class = "passordfelt">
+    Bekreft passordet ditt<br>
+    <input type = "password" id = "passordBekreft" class = "shortInput">
+  </div>
+  <p id="logginnbeskjed"></p>
+
+  <button id="logginnknapp"> Logg inn </button>
+  <button id="visresultatknapp"> Vis resultater </button>
+  <button id="bruktepassordknapp"> Se brukte passord </button>
+</div>
+
+<div class="innpakning" id="bruktepassord"></div>
+
+<div class="innpakning" id="avgistemme">
+  <h1> Avgi stemme </h1>
+  <input type="radio" name="sprak" id="Javascript"> Javascript <br>
+  <input type="radio" name="sprak" id="Java"> Java <br>
+  <input type="radio" name="sprak" id="Python"> Python <br>
+  <input type="radio" name="sprak" id="PHP"> PHP <br>
+  <input type="radio" name="sprak" id="C#"> C# <br>
+  <input type="radio" name="sprak" id="C++"> C++ <br>
+  <input type="radio" name="sprak" id="CSS"> CSS <br>
+  <input type="radio" name="sprak" id="Ruby"> Ruby <br>
+  <input type="radio" name="sprak" id="C"> C <br>
+  <input type="radio" name="sprak" id="Objectiv-C"> Objectiv-C <br>
+
+  <p id="valgtsprak">Velg et programmeringsspråk.</p>
+
+  <button id="stemknapp"> Avgi stemme </button>
+</div>
+
+<div class="innpakning" id="resultater">
+  <h1> Resultater </h1>
+  <button id="skjulresultatknapp"> Skjul resultater </button>
+  <br><br>
+  <div id="resultaterTabell"></div>
+</div>
+
+<script src="tabellfunksjon.js"></script> <!-- Henter lagTabell-funksjonen -->
+<script>
+// Henter HTML-elementer
+var passordEl = document.querySelector("#passord");
+var passordBekreftEl = document.querySelector("#passordBekreft");
+var logginnbeskjedEl = document.querySelector("#logginnbeskjed");
+var bruktepassordEl = document.querySelector("#bruktepassord");
+var resultaterEl = document.querySelector("#resultater");
+var resultaterTabellEl = document.querySelector("#resultaterTabell");
+var valgtsprakEl = document.querySelector("#valgtsprak");
+var avgistemmeEl = document.querySelector("#avgistemme");
+
+var logginnknappEl = document.querySelector("#logginnknapp");
+var visresultatknappEl = document.querySelector("#visresultatknapp");
+var bruktepassordknappEl = document.querySelector("#bruktepassordknapp");
+var stemknappEl = document.querySelector("#stemknapp");
+var skjulresultatknappEl = document.querySelector("#skjulresultatknapp");
+
+// Legger til lyttere
+logginnknappEl.addEventListener("click", logginn);
+visresultatknappEl.addEventListener("click", visresultater);
+bruktepassordknappEl.addEventListener("click", visbruktepassord);
+skjulresultatknappEl.addEventListener("click", skjulresultater);
+stemknappEl.addEventListener("click", registrerStemme);
+
+
+// Henter inn og legger til klikk-lytter på alle radioknapper
+var radioknapperEl = document.querySelectorAll("input[type='radio']");
+
+for (var i = 0; i < radioknapperEl.length; i++) {
+  radioknapperEl[i].addEventListener("click", visValgtSprak);
+}
+
+// Liste over godkjente passord i en array
+var passordliste = [];
+// Oversikt over partiene og oppslutningen deres i en array med objekter
+var oppslutning = [
+  { sprak: "JavaScript", prosent2016: 39.4, stemmer2017: 0, prosent2017: 0, endring: 0 },
+  { sprak: "Java", prosent2016: 22.4, stemmer2017: 0, prosent2017: 0, endring: 0 },
+  { sprak: "Python", prosent2016: 14.4, stemmer2017: 0, prosent2017: 0, endring: 0 },
+  { sprak: "PHP", prosent2016: 10.8, stemmer2017: 0, prosent2017: 0, endring: 0 },
+  { sprak: "C#", prosent2016: 8.8, stemmer2017: 0, prosent2017: 0, endring: 0 },
+  { sprak: "C++", prosent2016: 5.8, stemmer2017: 0, prosent2017: 0, endring: 0 },
+  { sprak: "CSS", prosent2016: 4.7, stemmer2017: 0, prosent2017: 0, endring: 0 },
+  { sprak: "Ruby", prosent2016: 3.2, stemmer2017: 0, prosent2017: 0, endring: 0 },
+  { sprak: "C", prosent2016: 2.6, stemmer2017: 0, prosent2017: 0, endring: 0 },
+  { sprak: "Objectiv-C", prosent2016: 2.3, stemmer2017: 0, prosent2017: 0, endring: 0 }
+];
+
+// Funksjon som behandler innlogging
+function logginn() {
+  // Henter passordet
+  var passord = passordEl.value;
+
+  // Variabel som avgjør om innlogging er vellykket
+  var loggetinn = false;
+
+  if(passord == passordBekreftEl.value){
+    loggetinn = true;
+    // Skriver beskjed til brukeren
+    logginnbeskjedEl.innerHTML = "Du er nå logget inn.";
+
+    // Gjør stemmevinduet synlig
+    avgistemmeEl.style.display = "block";
+
+    // Fjerner passordet fra arrayen (fordi det nå er brukt)
+    passordliste.push(passord);
+  }
+
+  if (loggetinn == false) {
+    // Innlogging ikke godkjent
+    // Skriver beskjed til brukeren
+       logginnbeskjedEl.innerHTML = "Feil passord, prøv igjen.";
+  }
+  passordEl.value = "";
+  passordBekreftEl.value = "";
+}
+
+function visbruktepassord(){
+  bruktepassordEl.style.display = "block";
+  bruktepassordEl.innerHTML = "";
+  for(i = 0; i < passordliste.length; i++){
+    bruktepassordEl.innerHTML += passordliste[i] + "<br>";
+  }
+}
+
+// Funksjon som viser hvilket parti som er valgt fra radioknappene
+function visValgtSprak(e) {
+  valgtsprakEl.innerHTML = "Du har valgt " + e.target.id + ". ";
+}
+
+// Funksjon som beregner og viser resultater
+function visresultater() {
+  // Går gjennom alle partiene for å finne summen av stemmer i 2017
+  var sum = 0;
+
+  for (var i = 0; i < oppslutning.length; i++) {
+    sum += oppslutning[i].stemmer2017;
+  }
+
+  // Vi får NaN hvis vi prøver å vise resultatene uten noen stemmer.
+  // For å unngå det kan vi gi sum en verdi dersom den er lik 0:
+  if (sum == 0) { sum = 1; }
+
+  // Beregne ny oppslutning og endring fra 2013 til 2017
+  for (var i = 0; i < oppslutning.length; i++) {
+    oppslutning[i].prosent2017 = ((oppslutning[i].stemmer2017 / sum) * 100).toFixed(1);
+    oppslutning[i].prosent2017 += " %";
+    if(!String(oppslutning[i].prosent2016).includes("%")){
+      oppslutning[i].prosent2016 += " %";
+    }
+    oppslutning[i].endring = (Number(oppslutning[i].prosent2017.substring(0, oppslutning[i].prosent2017.length - 2)) - Number(oppslutning[i].prosent2016.substring(0, oppslutning[i].prosent2016.length - 2))).toFixed(1) + " pp.";
+  }
+
+  // Lager en array med overskrifter
+  var overskrifter = ["Språk", "Oppslutning 2016", "Stemmer 2017", "Oppslutning 2017", "Endring"];
+
+  // Tømmer elementet der tabellen skal tegnes opp, slik
+  // at tidligere tabeller fjernes, ellers kommer flere tabeller under hverandre
+  resultaterTabellEl.innerHTML = "";
+
+  // Bruker funksjonen lagTAbell(), som er i dokumentet tabellfunksjon.js,
+  // til å lage en tabell med oversikt over partiene og oppslutningen deres
+  lagTabell(resultaterTabellEl, overskrifter, oppslutning);
+
+  // Gjør resultatelementet synlig
+  resultaterEl.style.display = "block";
+}
+
+// Funksjon som skjuler resultatene
+function skjulresultater() {
+  // Skjuler resultatelementet
+  resultaterEl.style.display = "none";
+}
+
+// Funksjon som registrerer stemmer
+function registrerStemme() {
+  // Finner ut hvilket parti som fikk stemmen,
+  // og øker antallet stemmer for tilsvarende
+  // parti i arrayen oppslutning
+  for (var i = 0; i < radioknapperEl.length; i++) {
+    if (radioknapperEl[i].checked) {
+      oppslutning[i].stemmer2017++;
+
+      var registrertSprak = oppslutning[i].sprak;
+      radioknapperEl[i].checked = false;
+    }
+  }
+
+  // Skjuler stemmevinduet
+  avgistemmeEl.style.display = "none";
+
+  // Skriver en bekreftelse i startvinduet
+  logginnbeskjedEl.innerHTML = "Din stemme ble registrert (" + registrertSprak + ").";
+  valgtsprakEl.innerHTML = "Velg et programmeringsspråk.";
+}
+
+</script>
+
+</body>
+</html>

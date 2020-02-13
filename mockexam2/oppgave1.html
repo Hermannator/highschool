@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel = "stylesheet" href = "stilark.css">
+		<title>Vinteraktiviteter (Oppgave 1)</title>
+		<style>
+			.innpakking{
+				text-align:center;
+			}
+			#skoyteloper{
+				transition-property:margin-left;
+				transition-duration:4s;
+			}
+			#skoyteloper:hover{
+				margin-left:70%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="innpakking">
+			<h1>Vinteraktiviteter</h1>
+			<p>Klikk en figur eller før musepekeren over for å få en artig effekt!</p>
+			<img src="bilder/skihopp.png" alt="skihopp" id="skihopper"><br>
+			<img src="bilder/skoyter.png" alt="skøyter" id="skoyteloper"><br>
+			<img src="bilder/boardercross.png" alt="boardercross"><br>
+			<img src="bilder/curling.png" alt="curling"><br>
+			<img src="bilder/hockey.png" alt="hockey"><br>
+			<img src="bilder/skiskyting.png" alt="skiskyting"><br>
+			<img src="bilder/snowboard.png" alt="snowboard"><br>
+			<img src="bilder/utfor.png" alt="utfor">
+		</div>
+		<audio src="lyder/skoytelyd.wav">
+		<script>
+			var skihopperEl = document.querySelector("#skihopper");
+			var lydEl = document.querySelector("audio");
+			skihopperEl.addEventListener("click",lyd);
+			function lyd(){
+				lydEl.play();
+			}
+		</script>
+	</body>
+</html>

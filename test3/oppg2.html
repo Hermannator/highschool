@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Oppgave 2</title>
+    <meta charset="UTF-8">
+    <style>
+      body {
+        background-color: #e0e0e0;
+      }
+      #mittCanvas {
+        background-color: #ffffff;
+        display: block;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="mittCanvas" width="600" height="300"></canvas>
+  </body>
+  <script>
+    var canvas = document.querySelector("#mittCanvas");
+    var ctx = canvas.getContext("2d");
+
+    var data = [
+      { beskrivelse: "Transport", verdi: 36},
+      { beskrivelse: "Materialer", verdi: 19},
+      { beskrivelse: "Energi", verdi: 45},
+    ];
+
+    var diagramBredde = canvas.width;
+
+    var total = 0;
+    for(var i = 0; i < data.length; i++){
+      total += data[i].verdi;
+    }
+
+    var startvinkel = Math.PI;
+    var sluttvinkel = 0;
+    var radius = canvas.height/2 - 10;
+    for(var i = 0; i < data.length; i++){
+      var andel = data[i].verdi / total;
+      sluttvinkel = startvinkel + andel*2*Math.PI;
+      ctx.fillStyle = "hsl("+ 40 + i * 110 + ", 100%, 50%)";
+      ctx.beginPath();
+      ctx.arc(diagramBredde/2,canvas.height/2,radius,startvinkel,sluttvinkel);
+      startvinkel = sluttvinkel;
+      ctx.lineTo(diagramBredde/2,canvas.height/2);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.font = "14px 'Arial'";
+    ctx.textAlign = "center";
+    ctx.fillStyle = "black";
+    ctx.textBaseline = "bottom";
+    ctx.fillText("Transport",250,90);
+    ctx.textBaseline = "top";
+    ctx.fillText("36 %",250,90);
+    ctx.fillStyle = "white";
+    ctx.textBaseline = "bottom";
+    ctx.fillText("Materialer",390,130);
+    ctx.textBaseline = "top";
+    ctx.fillText("19 %",390,130);
+    ctx.fillStyle = "white";
+    ctx.textBaseline = "bottom";
+    ctx.fillText("Energi",290,220);
+    ctx.textBaseline = "top";
+    ctx.fillText("45 %",290,220);
+  </script>
+</html>

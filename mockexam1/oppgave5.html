@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Flyturbestilling - IT-tentamen Hermann Mørkrid oppgave 5</title>
+		<link rel="stylesheet" href="stilark.css">
+	</head>
+	<body>
+		<div class=innpakking>
+			<h1>Bestill din flytur</h1>
+			<p class="bold">Fly fra</p>
+			<select id="flyFra">
+				<option value="OSL">Oslo</option>
+				<option value="BGO">Bergen</option>
+				<option value="TRD">Trondheim</option>
+			</select>
+			<p class="bold">Fly til</p>
+			<select id="flyTil">
+				<option value="TRD">Trondheim</option>
+				<option value="OSL">Oslo</option>
+				<option value="BGO">Bergen</option>
+			</select>
+			<div class = "dato">
+				<div>
+					<p>Dato for utreise</p>
+					<input type="date" id="utreise">
+				</div>
+				<div>
+					<p>Dato for hjemreise</p>
+					<input type="date" id="hjemreise">
+				</div>
+			</div>
+			<br>
+			<input type="radio" name="reiseType" value = "Tur-retur" id="turRetur">Tur-retur<br>
+			<input type="radio" name="reiseType" value = "Én vei" id="enVei" checked>Én vei<br>
+			<p>Antall voksne</p>
+			<input type="number" id="antallVoksne">
+			<p>Antall barn</p>
+			<input type="number" id="antallBarn">
+			<br>
+			<input type="checkbox" name="tilbud" value="jaTilHotell" id="hotell">Tilbud på hotell
+			<input type="checkbox" name="tilbud" value="jaTilLeiebil" id="leiebil">Tilbud på leiebil
+			<br><br>
+			<button id="knapp">Bestill</button>
+			<p id="oppsummering" class="bold"></p>
+		</div>
+		<script>
+			var flyFraEl = document.querySelector("#flyFra");
+			var flyTilEl = document.querySelector("#flyTil");
+			var utreiseEl = document.querySelector("#utreise");
+			var hjemreiseEl = document.querySelector("#hjemreise");
+			var turReturEl = document.querySelector("#turRetur");
+			var enVeiEl = document.querySelector("#enVei");
+			var antallVoksneEl = document.querySelector("#antallVoksne");
+			var antallBarnEl = document.querySelector("#antallBarn");
+			var hotellEl = document.querySelector("#hotell");
+			var leiebilEl = document.querySelector("#leiebil");
+			var knappEl = document.querySelector("#knapp");
+			var oppsummeringEl = document.querySelector("#oppsummering");
+			knappEl.addEventListener("click", bestill);
+			function bestill(){
+				oppsummeringEl.innerHTML = "";
+				oppsummeringEl.innerHTML += "Utreise fra: "+flyFraEl.value+"<br>";	//Jeg velger å legge til en ny "oppsummeringEl.innerHTML+=" for hver linje jeg vil legge til, fordi jeg føler det gir bedre orden selv om det blir litt "unødvendig" kode.
+				oppsummeringEl.innerHTML += "Flyreise til: "+flyTilEl.value+"<br>";
+				oppsummeringEl.innerHTML += "Dato utreise: "+utreiseEl.value+"<br>";
+				oppsummeringEl.innerHTML += "Dato hjemreise: "+hjemreiseEl.value+"<br>";
+				if(turReturEl.checked){
+					oppsummeringEl.innerHTML += "Reisetype: "+turReturEl.value+"<br>";
+					var antallTurer = 2;
+				}else{
+					oppsummeringEl.innerHTML += "Reisetype: "+enVeiEl.value+"<br>";
+					var antallTurer = 1;
+				}
+				oppsummeringEl.innerHTML += "Antall voksne: "+antallVoksneEl.value+"<br>";
+				oppsummeringEl.innerHTML += "Antall barn: "+antallBarnEl.value+"<br>";
+				if(hotellEl.checked){
+					oppsummeringEl.innerHTML += "Kunden ønsker tilbud på hotel.<br>"
+				}
+				if(leiebilEl.checked){
+					oppsummeringEl.innerHTML += "Kunden ønsker tilbud på leiebil<br>"
+				}
+				var totalpris = (800*antallVoksneEl.value + 500*antallBarnEl.value)*antallTurer;
+				oppsummeringEl.innerHTML += "Totalpris: "+totalpris+" kr."
+			}
+		</script>
+	</body>
+</html>

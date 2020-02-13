@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="stilark.css">
+		<link rel="stylesheet" href="tabellstil.css">
+		<style>
+
+		</style>
+	</head>
+	<body>
+		<div class="innpakking">
+			<h3>Overnattinger i Oslo</h3>
+			<div id = "tabellplass"></div>
+			<div id = "resultat"></div>
+			<div id = "resultat2"></div>
+		</div>
+		<script>
+			var tabellplassEl = document.querySelector("#tabellplass");
+			var resultatEl = document.querySelector("#resultat");
+			var resultat2El = document.querySelector("#resultat2");
+
+			var overnattinger = [
+				{
+					land: "Danmark",
+					tallJuni: 7031,
+					tallJuli: 7423,
+					tallAugust: 8716
+				},
+				{
+					land:"Finland",
+					tallJuni: 4526,
+					tallJuli: 5799,
+					tallAugust: 3245
+				},
+				{
+					land:"Island",
+					tallJuni: 825,
+					tallJuli: 646,
+					tallAugust: 995
+				},
+				{
+					land:"Sverige",
+					tallJuni: 20283,
+					tallJuli: 27444,
+					tallAugust: 22622
+				}
+			]
+
+			for(var i = 0; i < overnattinger.length; i++){
+				overnattinger[i].totalt = overnattinger[i].tallJuni + overnattinger[i].tallJuli + overnattinger[i].tallAugust;
+			}
+
+			var overskrifter = ["Land", "Juni", "Juli", "August", "Totalt","Avkryss"];
+
+			function lagTabell(overskrifter, objArr){
+				var tableEl = document.createElement("table");
+				var tBodyEl = document.createElement("tbody");
+	      var overskriftRad = "<tr>";
+	      for (var i = 0; i < overskrifter.length; i++){
+	        overskriftRad += "<th>" + overskrifter[i] + "</th>";
+	      }
+	      overskriftRad += "</tr>";
+				tBodyEl.innerHTML += overskriftRad;
+	        for (var i = 0; i < objArr.length; i++){
+	            var rad = "<tr>";
+							var egenskaper = ["land","tallJuni","tallJuli","tallAugust","totalt"]
+	            for (var j = 0; j < egenskaper.length; j++){
+	            	rad += "<td>" + objArr[i][egenskaper[j]] + "</td>";
+	            }
+	            var checkbox = "<input type='checkbox' value='" + objArr[i].totalt + "' id='checkbox" + objArr[i].land + "'>";
+	            rad +="<td>" + checkbox + "</td>";
+	            rad += "</tr>";
+	           tBodyEl.innerHTML += rad;
+		 			}
+				tabellplassEl.appendChild(tBodyEl);
+		 	}
+
+			lagTabell(overskrifter,overnattinger)
+
+			var storst = overnattinger[0].totalt;
+			var storstLand = "";
+			var minst = overnattinger[0].totalt;
+			var minstLand = "";
+			for(var i = 0; i < overnattinger.length; i++){
+				if(overnattinger[i].totalt >= storst){
+					storst = overnattinger[i].totalt;
+					storstLand = overnattinger[i].land;
+				}
+				if(overnattinger[i].totalt <= minst){
+					minst = overnattinger[i].totalt;
+					minstLand = overnattinger[i].land;
+				}
+			}
+			resultatEl.innerHTML += "<br>Landet der flest kom fra for å overnatte i Oslo var " + storstLand + " (" + storst + ").<br>Landet der færrest kom fra for å overnatte i Oslo var " + minstLand + " (" + minst + ").";
+
+			var totaltSammenlagt = 0;
+			for(var i = 0; i < overnattinger.length; i++){
+				totaltSammenlagt += overnattinger[i].totalt;
+			}
+			resultatEl.innerHTML += "<br>Totalt antall overnattinger fra alle landene i hele perioden var " + totaltSammenlagt + ".";
+
+			var gjennomsnitt = (totaltSammenlagt/overnattinger.length).toFixed(2);
+			resultatEl.innerHTML += "<br>Gjenomsnittlig antall overnattinger fra hvert land i perioden var " + gjennomsnitt + ".";
+
+			var input = document.querySelectorAll("input[type='checkbox']")
+			for(var i = 0; i < overnattinger.length; i++){
+				input[i].addEventListener("click", beregn);
+			}
+			function beregn(){
+	      var sum = 0;
+	      for (var i = 0; i < input.length; i++){
+	        if(input[i].checked === true){
+	          sum += Number(input[i].value);
+	        }
+	      }
+	      resultat2El.innerHTML = "<br>Fra landene du valgte var det totalt " + sum + " gjester.";
+	    }
+		</script>
+	</body>
+</html>
